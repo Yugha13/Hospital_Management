@@ -5,9 +5,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@repo/ui/components/ui
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { CalendarCheckIcon } from "lucide-react"
-import { AppHistory, UpcomingApp} from "../Appointment"
-
-
+import { AppHistory, UpcomingApp } from "../Appointment"
 
 
 export default function Component() {
@@ -16,9 +14,9 @@ export default function Component() {
 
   useEffect(() => {
     (async () => {
-      const hisres = await axios.get("/api/histapp");
-      const appoint = hisres.data.info;
-      console.log(appoint);
+      const { data } = await axios.get("/api/viewappoint");
+      const appoint = data.info;
+      // console.log(appoint); 
       const now = new Date();
       const upcomingAppointments = appoint?.filter((app: any) => (new Date(app.date) > now ));
       const finishedAppointments = appoint?.filter((app: any) => new Date(app.date) <= now);

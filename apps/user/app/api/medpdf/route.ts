@@ -16,7 +16,6 @@ export const GET = async ( req:NextRequest ) =>{
             include : {
                 patientInfo : true,
                 prescription : true,
-
             }
         })
         return NextResponse.json({info : info});

@@ -19,14 +19,13 @@ export default function Component() {
   useEffect(() => {
     (async () => {
       const res = await axios.get("/api/viewappointment");
-      const hisres = await axios.get("/api/hisappoint");
-      const appoint = hisres.data.info;
-      const appoints = res.data.info;  
-
+      const appoint = res.data.info;
+      // console.log("in appointment page - ",appoint);
+      const approved = appoint.filter((item:any) => item.status == "ACCEPTED");
       const now = new Date();
-      const docApp = appoints?.filter((app: any) => (new Date(app.date) > now ));
-      const upcomingAppointments = appoint?.filter((app: any) => (new Date(app.date) > now ));
-      const finishedAppointments = appoint?.filter((app: any) => (new Date(app.date) <= now));
+      const docApp = appoint?.filter((app: any) => (new Date(app.date) > now ));
+      const upcomingAppointments = approved?.filter((app: any) => (new Date(app.date) >= now ));
+      const finishedAppointments = appoint?.filter((app: any) => (new Date(app.date) < now));
       
       setInfo(docApp);
       setUpcoming(upcomingAppointments);

@@ -5,7 +5,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Avatar, AvatarImage, AvatarFallback } from "@repo/ui/components/ui/avatar"
 import { MessageCircle, Notebook, PillIcon, SearchIcon } from "lucide-react"
 import Link from "next/link"
-import { AppReq} from "../Appointment"
+import { AppReq } from "../Appointment"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import UpAppoint from "./UpAppoint"
@@ -38,7 +38,6 @@ const PatRecord = ({hist}:any) => {
 }
 
 export default function Component() {
-  const [info, setInfo] = useState([] as any);
   const [upcoming, setUpcoming] = useState([] as any);
   const [hist, sethist] = useState([] as any);
   const [search, setSearch] = useState("");
@@ -46,17 +45,21 @@ export default function Component() {
   useEffect(() => {
     (async () => {
       const res = await axios.get("/api/viewappointment");
-      const responce = await axios.get("/api/hisappoint");
-      const appoint = responce.data.info;
-      const appoints = res.data.info;  
+      const appoint = res.data.info;  
       
       const now = new Date();
-      const upAppoint = appoint?.filter((app: any) => new Date(app.date) > now);
-      const hisAppoint = appoint?.filter((app: any) => new Date(app.date) < now);
-      // console.log(upcomingAppointments);
-      const docAppoint = appoints?.filter((app: any) => new Date(app.date) >= now);
+      const approved = appoint.filter((item:any) => item.status == "ACCEPTED");
+      const pending = appoint.filter((item: any) => item.status == "PENDING");
       
-      setInfo(docAppoint);
+      const pastPending = pending.filter((app: any) => new Date(app.date) < now);
+      if (pastPending.length > 0) {
+        pastPending.forEach(async (app: any) => {
+          await axios.post("/api/declineappointment", { id: app.id });
+        });
+      }
+      const upAppoint = approved.filter((app: any) => new Date(app.date) >= now);
+      const hisAppoint = approved.filter((app: any) => (new Date(app.date) < now))
+
       setUpcoming(upAppoint);
       sethist(hisAppoint);
     })() 
@@ -78,8 +81,11 @@ export default function Component() {
                 <CardDescription>Accept or Decline patient appointments.</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid gap-4">
-                {info?.slice(0, 2).map((i:any) => <AppReq info={i}/>)}
+              <div className="">
+                  {upcoming.length > 0 ? 
+                    upcoming.slice(0, 3).map((i:any) => <AppReq info={i}/>) :
+                    <p className="text-center">No Appointments</p>
+                  }
                 </div>
               </CardContent>
               <CardFooter>
@@ -95,11 +101,17 @@ export default function Component() {
               </CardHeader>
               <CardContent>
                 <div className="grid gap-4">
-                  {hist.map((i:any) => <PatRecord hist={i}/>)}
+                  {hist.length > 0 ? 
+                    hist?.slice(0, 3).map((i:any) => <PatRecord hist={i}/>) :
+                    <p className="text-center">No History Available</p>
+                  }
                 </div>
               </CardContent>
               <CardFooter>
-                  <Button size="sm">View All</Button>
+                  {hist.length > 0 ? 
+                    <Button size="sm">View All</Button>:
+                    <></>
+                  }
               </CardFooter>
             </Card>
             <Card>

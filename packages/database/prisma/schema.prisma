@@ -15,7 +15,6 @@ model Patient {
   patientInfo     PatientInfo? 
   appointments    Appointment[]     @relation("PatientAppointments")
   pillrefill      PillRefill[]
-  paymentHistory  PaymentHistory[]
   reviews         Review[]
   prescription    Prescription[]
   labResult       LabResult[]
@@ -42,10 +41,13 @@ model Doctor {
   id              Int            @id     @default(autoincrement())
   email           String         @unique
   password        String?
+  hosName         String?
   appointments    Appointment[]  @relation("DoctorAppointments")
   doctorinfo      DoctorInfo?
   reviews         Review[]
   prescription    Prescription[]
+  hospital        Hospital?      @relation(fields: [hospitalId], references: [id])
+  hospitalId      Int? 
 }
 
 model DoctorInfo {
@@ -60,6 +62,14 @@ model DoctorInfo {
   doctor          Doctor   @relation(fields: [email], references: [email])
 }
 
+
+model Hospital {
+  id        Int      @id @default(autoincrement())
+  name      String
+  location  String
+  adminEmail String
+  doctors   Doctor[]
+}
 model Appointment {
   id           String     @id @default(uuid())
   name         String
@@ -132,11 +142,4 @@ model Review {
   patient       Patient  @relation(fields: [patientEmail], references: [email])
 }
 
-model PaymentHistory {
-  id             Int      @id @default(autoincrement())
-  date           DateTime @default(now())
-  patientEmail   String
-  patient        Patient  @relation(fields: [patientEmail], references: [email])
-  patientName    String
-  status         String   // e.g., cancelled, processing, success
-}
+

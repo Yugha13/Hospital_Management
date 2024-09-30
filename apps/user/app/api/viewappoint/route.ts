@@ -11,16 +11,19 @@ export const GET = async ( req : NextRequest ) => {
     // console.log("email-",email);
     
     try {
-        const appointments = await prisma.patient.findMany({
+        const appointments = await prisma.appointment.findMany({
             where : {
-                email
+                status: {
+                    in: ["ACCEPTED", "DECLINED"],
+                }, 
             },
+            orderBy: [
+                {date: 'asc'}, {time: 'asc'}
+            ],
             include : {
-                appointments : {
-                    where : {
-                        status: {
-                            in: ["ACCEPTED", "DECLINED"],
-                        }, 
+                doctor : {
+                    select : {
+                        doctorinfo : true
                     }
                 }
             }

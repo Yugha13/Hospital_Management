@@ -18,13 +18,9 @@ export default function Component() {
 
     useEffect(() => {
         (async() => {
-            const user = await axios.get("/api/profile");
-            // console.log(user.data.info);
-            
-            setInfo(user.data.info)
-            // const dateString = "2024-09-11T00:00:00.000Z";
-            // const date = new Date(user.data.info.dob);        
-            // console.log("emeNum ",user.data.info.emergencyNumber);
+            const user = await axios.get("/api/patientcheck");
+            // console.log(user.data);
+            setInfo(user.data)
         })()
     }, [])
 

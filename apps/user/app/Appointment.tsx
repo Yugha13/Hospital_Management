@@ -42,7 +42,7 @@ export const AppHistory = ({info}:any) => {
     const date = new Date(info.date);
     const day = date.toLocaleDateString()
     // console.log(day);
-    console.log(info.status);
+    // console.log(info.status);
     const [colorIs, setColrIs] = useState((info.status == "DECLINED") ? "bg-destructive text-red-50" : "bg-green-300 text-green-50");
     // const color = ;
 

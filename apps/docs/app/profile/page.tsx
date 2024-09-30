@@ -18,9 +18,9 @@ export default function Component() {
 
     useEffect(() => {
         (async() => {
-            const user = await axios.get("/api/profile");
-            // console.log(user.data.info);
-            setInfo(user.data.info)
+            const user = await axios.get("/api/doccheck");
+            // console.log(user.data);
+            setInfo(user.data)
         })()
     }, [])
     
@@ -36,7 +36,6 @@ export default function Component() {
           <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
         ),
       })
-
     }
 
     const handleChange = (e:any)  => {
