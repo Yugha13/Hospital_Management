@@ -25,10 +25,10 @@ const PrescriptionTemplate: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get("/api/patientrecord");
-      setInfo(data.info.patientInfo);
-      setPres(data.info.prescription);
-      console.log(data.info);
+      const { data } = await axios.get("/api/patientcheck");
+      // console.log(data);
+      setInfo(data.patientInfo);
+      setPres(data.prescription);
     })();
   }, []);
 

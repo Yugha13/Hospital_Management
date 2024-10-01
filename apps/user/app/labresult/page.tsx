@@ -44,10 +44,9 @@ export default function Component() {
   
   useEffect(() => {
     (async() => {
-        const result = await axios.get("/api/labresult");
-        // console.log(result);
-        // console.log(datas.data.info);
-        setInfo(result.data.info);
+        const {data} = await axios.get("/api/patientcheck");
+        // console.log(data.info);
+        setInfo(data.labResult);
     })()
   },[])
 

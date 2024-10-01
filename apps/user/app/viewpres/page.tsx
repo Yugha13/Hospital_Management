@@ -60,8 +60,8 @@ export default function Component() {
   
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get("/api/viewprescrip");
-      setInfo(data.info);
+      const { data } = await axios.get("/api/patientcheck");
+      setInfo(data.prescription);
     })();
   }, []);
 
@@ -71,7 +71,7 @@ export default function Component() {
   return (
     <div className="grid gap-8 max-w-4xl mx-auto px-4 py-8">
       <div className="text-center font-mono font-extrabold text-xl">Prescriptions</div>
-      <Link href="/sample">
+      <Link href="/pdfdownload">
         <div className="text-center hover:underline text-primary">
           Click here and download it in pdf.
         </div>

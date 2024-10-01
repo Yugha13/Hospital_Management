@@ -4,7 +4,6 @@ import Appointment from "./Appointment"
 import Message from "./Message"
 import Notifiaction from "./Notifiaction"
 import Records from "./Records"
-import Payment from "./Payment"
 import { useEffect, useState } from "react"
 import axios from "axios"
 
@@ -17,7 +16,7 @@ export default function Component() {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const { data } = await axios.get("/api/viewappoint");
+        const { data } = await axios.get("/api/appointment");
         setappoint(data.info);
       } catch (error) {
         console.error("Error fetching appointments:", error);
@@ -37,7 +36,6 @@ export default function Component() {
       </main>
       <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 h-fit">
         <Records/>
-        <Payment/> 
       </main>
     </div>
   )

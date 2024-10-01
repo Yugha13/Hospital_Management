@@ -14,7 +14,7 @@ export default function Component() {
 
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get("/api/viewappoint");
+      const { data } = await axios.get("/api/appointment");
       const appoint = data.info;
       // console.log(appoint); 
       const now = new Date();

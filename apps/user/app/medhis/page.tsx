@@ -40,10 +40,10 @@ export default function Component() {
 
   useEffect(() => {
     (async () => {
-      const datas = await axios.get("/api/viewprescrip");
-      const result = await axios.get("/api/labresult");
-      setResult(result.data.info);
-      setInfo(datas.data.info);
+      const {data} = await axios.get("/api/patientcheck");
+      // console.log(data);
+      setResult(data.labResult);
+      setInfo(data.prescription);
     })();
   }, []);
 

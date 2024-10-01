@@ -1,10 +1,37 @@
-import { userAppointment } from "@repo/zod";
-import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@repo/database";
-import {  getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-
+import { NextRequest, NextResponse } from "next/server";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { userAppointment } from "@repo/zod";
 
 const prisma = new PrismaClient();
+
+export const GET = async ( req : NextRequest ) => {
+    try {
+        const appointments = await prisma.appointment.findMany({
+            where : {
+                status: {
+                    in: ["ACCEPTED", "DECLINED"],
+                }, 
+            },
+            orderBy: [
+                {date: 'asc'}, {time: 'asc'}
+            ],
+            include : {
+                doctor : {
+                    select : {
+                        doctorinfo : true
+                    }
+                }
+            }
+        });
+        // console.log(appointments);
+        return NextResponse.json({info:appointments})
+    } catch (e) {
+        console.log(e);
+        return NextResponse.json({error : e})
+    }
+}
+
 
 export const POST = async (req : NextRequest) => {
     const { getUser } = getKindeServerSession();

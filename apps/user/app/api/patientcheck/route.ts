@@ -9,10 +9,15 @@ const prisma = new PrismaClient();
 export const GET = async(req : NextRequest) => {
     const { getUser } = getKindeServerSession();
     const { email } = await getUser() as any;
-    const user = await prisma.patientInfo.findFirst({
+    const user = await prisma.patient.findFirst({
         where: {
             email
         },
+        include : {
+            patientInfo  : true,
+            prescription : true,
+            labResult   : true
+        }
     });
     if(!user) return NextResponse.json({mes: "not found"}, {status: 405})
     // console.log(user);
