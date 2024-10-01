@@ -33,7 +33,7 @@ export default function Component() {
       <main className="lg:flex w-full gap-4 p-4 h-fit justify-between grid grid-cols-1 md:grid-cols-2"> 
         <Appointment appoint = {appoint}/>
         <Message/>
-        {/* <Notifiaction appoint = {appoint}/> */}
+        <Notifiaction appoint = {appoint}/>
       </main>
       <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 h-fit">
         <Records/>

@@ -19,7 +19,7 @@ const VoiceflowWidget = () => {
           checkVoiceflow();
         });
 
-        // Now we can safely use window.voiceflow
+  
         window.voiceflow.chat.load({
           verify: { projectID: '66eaa5816031ae503eddc6ed' },
           url: 'https://general-runtime.voiceflow.com',
