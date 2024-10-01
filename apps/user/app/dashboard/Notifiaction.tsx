@@ -6,7 +6,8 @@ import { format } from 'date-fns';
 
 const NotiCard = ({info}:any) => {
   const month = format(info.date, "dd MMMM yyyy");
-  // console.log(info.status);
+  // console.log(info);
+  const docName = info.doctor.doctorinfo.name;
   const color = (info.status == "ACCEPTED")? "bg-green-400" : "bg-red-400";
   const docstatus = (info.status == "ACCEPTED")? "Confirmed" : "Declined";
     return(
@@ -15,7 +16,7 @@ const NotiCard = ({info}:any) => {
         {(info.status=="ACCEPTED")? <CheckIcon className="h-5 w-5" /> : <Ban className="h-5 w-5" />}
       </div>
       <div className="p-1">
-        <div className="font-medium ">Your appointment with Dr. Smith was {docstatus}</div>
+        <div className="font-medium ">Your appointment with Dr. {docName} was {docstatus}</div>
         {(info.status =="DECLINED")?<div className="text-sm text-muted-foreground">Reason : {info.docreason}</div>:<div className="text-sm text-muted-foreground">Booked on {month}</div>}
       </div>
     </div>
