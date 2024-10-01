@@ -23,7 +23,6 @@ export default function Component() {
         navigate.push("/dashboard")
       } catch(e) {
         //pass
-
       }
     })()
   }, [])

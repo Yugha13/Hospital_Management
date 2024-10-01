@@ -64,10 +64,12 @@ model DoctorInfo {
 
 
 model Hospital {
-  id        Int      @id @default(autoincrement())
-  name      String
-  location  String
-  adminEmail String
+  id            Int      @id @default(autoincrement())
+  name          String
+  location      String
+  adminEmail    String
+  hospitalUrl   String?
+  hospitalImg   String?
   doctors   Doctor[]
 }
 model Appointment {
