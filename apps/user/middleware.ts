@@ -4,5 +4,5 @@ export default function middleware(req:any ) {
 }
 
 export const config = {
-  matcher: ["/welcome", "/alldocs", "/dashboard","/profile","/appointment","/addreview","/refillpills", "/chat", "/viewpres","/history","/sample"]
+  matcher: ["/welcome", "/alldocs", "/dashboard","/profile","/appointment","/addreview","/refillpills", "/chat", "/viewpres","/appointhist","/pdfdownload"]
 };

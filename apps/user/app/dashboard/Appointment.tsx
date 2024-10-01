@@ -48,7 +48,7 @@ const Appointment = ({ appoint }: any) => {
             </CardHeader>
               {upappoint.slice(0,3).map((i:any)=> <Content appoint = {i}/>)}
             <CardFooter className="flex justify-between ">
-              <Link href="/history" target="_blank" className="text-sm font-medium" prefetch ={false}>
+              <Link href="/appointhist" target="_blank" className="text-sm font-medium" prefetch ={false}>
                 View all appointments
               </Link>
               

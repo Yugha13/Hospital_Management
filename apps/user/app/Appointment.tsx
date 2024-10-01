@@ -24,8 +24,8 @@ export const UpcomingApp = ({info}:any) => {
           <div>
             <p className="font-medium">{info.name}</p>
             <p className="text-sm text-muted-foreground">Reason : {info.reason}</p>
-            <p className="text-sm text-muted-foreground">Date - {day}</p>
-            <p className="text-sm text-muted-foreground">Time - {info.time}</p>
+            <p className="text-sm text-muted-foreground">Date : {day}</p>
+            <p className="text-sm text-muted-foreground">Time : {info.time}</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -58,8 +58,9 @@ export const AppHistory = ({info}:any) => {
           <div>
             <p className="font-medium">{info.name}</p>
             <p className="text-sm text-muted-foreground">Reason : {info.reason}</p>
-            <p className="text-sm text-muted-foreground">Date - {day}</p>
-            <p className="text-sm text-muted-foreground">Time - {info.time}</p>
+            <p className="text-sm text-muted-foreground">Date : {day}</p>
+            <p className="text-sm text-muted-foreground">Time : {info.time}</p>
+            {info.status=="DECLINED"?<p className="text-sm text-muted-foreground">Declined Reason : {info.docreason}</p>:<></>}
           </div>
         </div>
         <div className="flex items-center gap-2">
