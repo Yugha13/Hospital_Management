@@ -1,8 +1,7 @@
-"use client"
+'use client';
 
 import { useEffect, useRef, useState } from 'react';
-// @ts-ignore
-import html2pdf from 'html2pdf.js';
+import {html2pdf, Worker } from 'html2pdf.js';
 import axios from 'axios';
 
 const TableRow = ({ pres }: any) => {
@@ -19,7 +18,8 @@ const TableRow = ({ pres }: any) => {
   );
 };
 
-const PrescriptionTemplate: React.FC = () => {
+
+const PrescriptionTemplate = () => {
   const [info, setInfo] = useState([] as any);
   const [pres, setPres] = useState([] as any);
 
@@ -53,10 +53,7 @@ const PrescriptionTemplate: React.FC = () => {
       jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
     };
 
-    html2pdf()
-      .from(element)
-      .set(options)
-      .save();
+    
   };
 
   return (

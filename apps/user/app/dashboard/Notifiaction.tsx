@@ -26,23 +26,23 @@ const NotiCard = ({info}:any) => {
 
 const Notifiaction = ({appoint}:any) => {
   // console.log("appoint from notification ", appoint);
-  
+
   return (
-        <Card className="w-full md:col-span-2">
-            <CardHeader>
-              <CardTitle>Notifications</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid gap-4">
-                {appoint.slice(0,3).map((i:any)=> <NotiCard info = {i}/>)}
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Link href="#" className="text-sm font-medium" prefetch={false}>
-                View all notifications
-              </Link>
-            </CardFooter>
-          </Card>
+    <Card className="w-full md:col-span-2">
+      <CardHeader>
+        <CardTitle>Notifications</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="grid gap-4">
+          {appoint.slice(0,3).map((i:any)=> <NotiCard info = {i}/>)}
+        </div>
+      </CardContent>
+      <CardFooter>
+        <Link href="#" className="text-sm font-medium" prefetch={false}>
+          View all notifications
+        </Link>
+      </CardFooter>
+    </Card>
   )
 }
 

@@ -13,7 +13,7 @@ import { ToastAction } from "@repo/ui/components/ui/toast"
 
 export default function Component() {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({} as any);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ export default function Component() {
 
   const handleChange = (e: any) => {
     const { id, value } = e.target;
-    setFormData((cur) => ({ ...cur, [id]: value }));
+    setFormData((cur:any) => ({ ...cur, [id]: value }));
   };
 
   return (

@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 //delete patient appointment
 
 export default function Component({params}:any) {
-    const [info, setinfo] = useState({});
+    const [info, setinfo] = useState({} as any);
     const [appoint, setappoint] = useState({});
     // console.log(params.patid);
     useEffect(() => {

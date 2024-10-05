@@ -142,13 +142,17 @@ const page = ({ params }: any) => {
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0">
-                  <Calendar
+                  {
+                    <Calendar
                     mode="single"
+                    // @ts-ignore
                     selected={date}
+                    // @ts-ignore
                     onSelect={setDate}
                     disabled={(date) => disablePastDates(date)}
                     initialFocus
-                  />
+                    />
+                  }
                 </PopoverContent>
               </Popover>
             </div>

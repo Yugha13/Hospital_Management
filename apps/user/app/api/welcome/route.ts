@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 export async function GET(req:any, res:any)  {
     const {getUser} = getKindeServerSession();
-    const {email} = await getUser() as any;
+    const {email} = await getUser() || {};
     // console.log(email);
     if(!email) return redirect(process.env.BASEURL+"/");
     try {
