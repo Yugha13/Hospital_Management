@@ -5,11 +5,11 @@ import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
-export async function GET(req:any, res:any)  {
-    const {getUser} = getKindeServerSession();
-    const {email} = await getUser() || {};
+export async function GET() {
+    const { getUser } = getKindeServerSession();
+    const { email } = await getUser() || {};
     // console.log(email);
-    if(!email) return redirect(process.env.BASEURL+"/");
+    if (!email) return redirect(process.env.BASEURL + "/");
     try {
         await prisma.patient.create({
             data: {
@@ -17,14 +17,14 @@ export async function GET(req:any, res:any)  {
             }
         });
         return NextResponse.redirect(process.env.BASEURL + "/welcome");
-    } catch(e) {
+    } catch (e) {
         // console.log("error: ", e);
 
         const userExist = await prisma.patientInfo.findFirst({
             where: {
             }
         });
-        if(!userExist) return redirect("/welcome");
-        return redirect( "/dashboard");
+        if (!userExist) return redirect("/welcome");
+        return redirect("/dashboard");
     }
 }

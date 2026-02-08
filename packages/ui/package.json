@@ -6,9 +6,7 @@
     "ui": "pnpm dlx shadcn@latest",
     "lint": "eslint ."
   },
-  "export": {
-    "sonner": "./sonner.tsx"
-  },
+  "type": "module",
   "peerDependencies": {
     "react": "^18"
   },
@@ -56,6 +54,7 @@
     "./tailwind.config": "./tailwind.config.ts",
     "./lib/*": "./src/lib/*.ts",
     "./hooks/*": "./src/hooks/*.ts",
-    "./components/*": "./src/components/*.tsx"
+    "./components/*": "./src/components/*.tsx",
+    "./sonner": "./sonner.tsx"
   }
 }

@@ -24,8 +24,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@repo/ui/components/ui/select"
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { mockDoctors } from "../../lib/mockData";
 
 
 
@@ -39,7 +39,7 @@ const page = ({ params }: any) => {
   const [formData, setFormData] = useState({} as any)
 
   // Get today's date
-  const todayDate = format(new Date(), "PPP")
+
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
@@ -48,12 +48,13 @@ const page = ({ params }: any) => {
       toast({
         title: "Error",
         description: "Please select both date and time.",
-        status: "error",
+        variant: "destructive",
       })
       return
     }
 
-    await axios.post("/api/appointment", { ...formData, date, time })
+    // Mock booking - no API call
+    // await axios.post("/api/appointment", { ...formData, date, time })
     setFormData({} as any)
     setDate(null)
     setTime("")
@@ -75,8 +76,11 @@ const page = ({ params }: any) => {
 
   useEffect(() => {
     (async () => {
-      const { data } = await axios.post("/api/alldocs", { id: +params.docname })
-      setFormData({ doctorEmail: data.email })
+      // Mock fetching doctor email
+      const doc = mockDoctors.find(d => d.id === +params.docname);
+      if (doc) {
+        setFormData({ doctorEmail: doc.email })
+      }
     })()
   }, [])
 
@@ -144,13 +148,13 @@ const page = ({ params }: any) => {
                 <PopoverContent className="w-auto p-0">
                   {
                     <Calendar
-                    mode="single"
-                    // @ts-ignore
-                    selected={date}
-                    // @ts-ignore
-                    onSelect={setDate}
-                    disabled={(date) => disablePastDates(date)}
-                    initialFocus
+                      mode="single"
+                      // @ts-ignore
+                      selected={date}
+                      // @ts-ignore
+                      onSelect={setDate}
+                      disabled={(date) => disablePastDates(date)}
+                      initialFocus
                     />
                   }
                 </PopoverContent>

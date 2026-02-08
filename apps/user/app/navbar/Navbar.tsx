@@ -3,9 +3,9 @@
 import Link from "next/link"
 import { Button } from "@repo/ui/components/ui/button"
 import { Sheet, SheetTrigger, SheetContent } from "@repo/ui/components/ui/sheet"
-import { Loader2, LogOut, MenuIcon, User } from "lucide-react"
+import { LogOut, MenuIcon, User } from "lucide-react"
 import { LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components"
-import {useKindeBrowserClient} from "@kinde-oss/kinde-auth-nextjs";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { useRouter } from "next/navigation"
 import NotNav from "./NotNav"
 
@@ -13,16 +13,17 @@ import NotNav from "./NotNav"
 
 export default function Navbar() {
   const navigate = useRouter();
-  const {isAuthenticated, isLoading} = useKindeBrowserClient();
-  
-  if(isLoading) {
-    return <nav className="border-b-2 border-pink-100 bg-gray-200 animate-pulse w-full h-16 flex ">
-    </nav>
-  }
-  if(!isAuthenticated) {
-    return <NotNav/>
-  }
-  
+  const isLoading = false;
+  const isAuthenticated = true; // Hardcoded for demo
+
+  // if (isLoading) {
+  //   return <nav className="border-b-2 border-pink-100 bg-gray-200 animate-pulse w-full h-16 flex ">
+  //   </nav>
+  // }
+  // if (!isAuthenticated) {
+  //   return <NotNav />
+  // }
+
   return (
     <header className="flex items-center justify-between px-4 py-3 shadow-sm sm:px-6 lg:px-8">
       <div className="flex items-center">
@@ -47,56 +48,56 @@ export default function Navbar() {
       </nav>
       <div className="flex items-center space-x-4 gap-3">
         <div onClick={() => navigate.push("/alldocs")}>
-        <SearchIcon  />
+          <SearchIcon />
         </div>
 
-        {!isAuthenticated?
-         (
-           <LoginLink>
-            <Button variant={"outline"}>Login</Button>
-          </LoginLink>):
+        {!isAuthenticated ?
+          (
+            <LoginLink>
+              <Button variant={"outline"}>Login</Button>
+            </LoginLink>) :
           <>
-          <Link href={"/profile"}>
-          <User />
-          </Link>
-          <LogoutLink >
-            <Button variant={"destructive"} className="flex gap-1">
-              <LogOut size={"icon"}/>Logout
-            </Button>
-          </LogoutLink>
+            <Link href={"/profile"}>
+              <User />
+            </Link>
+            <LogoutLink >
+              <Button variant={"destructive"} className="flex gap-1">
+                <LogOut size={"icon"} />Logout
+              </Button>
+            </LogoutLink>
           </>
-          }
-        
+        }
+
         <Sheet>
-        <SheetTrigger asChild>
-          <Button variant="outline" size="icon" className="md:hidden">
-            <MenuIcon className="h-6 w-6" />
-            <span className="sr-only">Toggle navigation menu</span>
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="right">
-          <nav className="grid gap-4 p-4">
-            <Link href="#" className="text-sm font-medium  hover:text-primary text-black" prefetch={false}>
-              Home
-            </Link>
-            <Link href="#" className="text-sm font-medium light:text-gray-600 hover:text-primary" prefetch={false}>
-              About
-            </Link>
-            <Link href="#" className="text-sm font-medium light:text-gray-600 hover:text-primary" prefetch={false}>
-              Services
-            </Link>
-            <Link href="#" className="text-sm font-medium light:text-gray-600 hover:text-primary" prefetch={false}>
-              Contact
-            </Link>
-          </nav>
-        </SheetContent>
-      </Sheet>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="icon" className="md:hidden">
+              <MenuIcon className="h-6 w-6" />
+              <span className="sr-only">Toggle navigation menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right">
+            <nav className="grid gap-4 p-4">
+              <Link href="#" className="text-sm font-medium  hover:text-primary text-black" prefetch={false}>
+                Home
+              </Link>
+              <Link href="#" className="text-sm font-medium light:text-gray-600 hover:text-primary" prefetch={false}>
+                About
+              </Link>
+              <Link href="#" className="text-sm font-medium light:text-gray-600 hover:text-primary" prefetch={false}>
+                Services
+              </Link>
+              <Link href="#" className="text-sm font-medium light:text-gray-600 hover:text-primary" prefetch={false}>
+                Contact
+              </Link>
+            </nav>
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
   )
 }
 
-function HospitalIcon(props:any) {
+function HospitalIcon(props: any) {
   return (
     <svg
       {...props}
@@ -121,7 +122,7 @@ function HospitalIcon(props:any) {
 }
 
 
-function SearchIcon(props:any) {
+function SearchIcon(props: any) {
   return (
     <svg
       {...props}

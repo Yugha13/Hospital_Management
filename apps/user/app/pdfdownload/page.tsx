@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import {html2pdf, Worker } from 'html2pdf.js';
+
 import axios from 'axios';
 
 const TableRow = ({ pres }: any) => {
@@ -43,17 +43,8 @@ const PrescriptionTemplate = () => {
   const handleDownload = () => {
     if (!prescriptionRef.current) return;
 
-    const element = prescriptionRef.current;
 
-    const options = {
-      margin: 0.5,
-      filename: 'prescription.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-    };
 
-    
   };
 
   return (
@@ -121,7 +112,7 @@ const PrescriptionTemplate = () => {
           </div>
         </div>
 
-        
+
       </div>
       <div className="text-right m-4">
         <button
@@ -130,7 +121,7 @@ const PrescriptionTemplate = () => {
         >
           Download PDF
         </button>
-        
+
       </div>
     </div>
   );

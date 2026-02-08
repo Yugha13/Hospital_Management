@@ -1,8 +1,9 @@
-import {withAuth} from "@kinde-oss/kinde-auth-nextjs/middleware";
-export default function middleware(req:any ) {
-  return withAuth(req);
+import { withAuth } from "@kinde-oss/kinde-auth-nextjs/middleware";
+export default function middleware(req: any) {
+  // return withAuth(req);
+  return;
 }
 
 export const config = {
-  matcher: ["/welcome", "/alldocs", "/dashboard","/profile","/appointment","/addreview","/refillpills", "/chat", "/viewpres","/appointhist","/pdfdownload"]
+  matcher: ["/welcome", "/alldocs", "/dashboard", "/profile", "/appointment", "/addreview", "/refillpills", "/chat", "/viewpres", "/appointhist", "/pdfdownload"]
 };

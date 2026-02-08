@@ -1,7 +1,8 @@
 "use client"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@repo/ui/components/ui/button"
-import { AppWindow, ArrowRightIcon, Edit, FacebookIcon, FormInput, FormInputIcon, InstagramIcon, Lock, Pill, Stethoscope, TwitterIcon, Workflow } from "lucide-react"
+import { AppWindow, ArrowRightIcon, Edit, FacebookIcon, FormInput, InstagramIcon, Lock, Pill, Stethoscope, TwitterIcon, Workflow } from "lucide-react"
 import Review from "./Review"
 import Hospitals from "./ColabratedHospital"
 
@@ -17,23 +18,24 @@ export default function Component() {
             <div className="grid md:grid-cols-2 gap-8 md:gap-12 ">
               <div className="flex flex-col items-start gap-4 ">
                 <h1 className="text-3xl md:text-4xl font-bold">
-                ALL HEALTH,<br/> NO EXCUSES...
+                  ALL HEALTH,<br /> NO EXCUSES...
                 </h1>
                 <p className="text-muted-foreground text-lg mt-1">
                   Welcome to XYZ, where compassionate care meets advanced medical expertise. We are dedicated to providing exceptional healthcare services to ensure the well-being and comfort of every patient.
                 </p>
                 <p className="text-muted-foreground text-lg mt-1">
-                Experience compassionate care and cutting-edge medical treatments at XYZ, where your health and well-being are our top priorities
+                  Experience compassionate care and cutting-edge medical treatments at XYZ, where your health and well-being are our top priorities
                 </p>
                 <Link href="/alldocs">
                   <Button>Book Appointment</Button>
                 </Link>
               </div>
               <div className="relative overflow-hidden rounded-lg shadow-lg">
-                <img
+                <Image
                   src="https://cdn.dribbble.com/users/976984/screenshots/3727819/hospital.gif"
                   width={200}
                   height={100}
+                  alt="Hospital animation"
                   className="w-full h-full object-contain"
                   style={{ aspectRatio: "200/100", objectFit: "cover" }}
                 />
@@ -52,17 +54,17 @@ export default function Component() {
                   <h3 className="text-xl font-semibold">Pills Refill Request</h3>
                 </div>
                 <p className="text-muted-foreground">
-                Conveniently request prescription refills online, and have your medications ready for pickup or delivery without the need for an in-person visit.
+                  Conveniently request prescription refills online, and have your medications ready for pickup or delivery without the need for an in-person visit.
                 </p>
                 <div className="py-3">
-                <Link
-                  href="/refillpills"
-                  className="text-primary font-medium mt-4 inline-flex items-center gap-1 absolute bottom-4"
-                  prefetch={false}
+                  <Link
+                    href="/refillpills"
+                    className="text-primary font-medium mt-4 inline-flex items-center gap-1 absolute bottom-4"
+                    prefetch={false}
                   >
-                  Request for Refill
-                  <ArrowRightIcon className="h-4 w-4" />
-                </Link>
+                    Request for Refill
+                    <ArrowRightIcon className="h-4 w-4" />
+                  </Link>
                 </div>
               </div>
               <div className="bg-background rounded-lg shadow-lg p-6 relative">
@@ -73,17 +75,17 @@ export default function Component() {
                   <h3 className="text-xl font-semibold">Appointment</h3>
                 </div>
                 <p className="text-muted-foreground">
-                Book your appointment with our experienced doctors today and receive personalized, professional care at your convenience.
+                  Book your appointment with our experienced doctors today and receive personalized, professional care at your convenience.
                 </p>
                 <div className="py-3">
-                <Link
-                  href="/alldocs"
-                  className="text-primary font-medium mt-4 inline-flex items-center gap-1 absolute bottom-4"
-                  prefetch={false}
+                  <Link
+                    href="/alldocs"
+                    className="text-primary font-medium mt-4 inline-flex items-center gap-1 absolute bottom-4"
+                    prefetch={false}
                   >
-                  Book Appointment
-                  <ArrowRightIcon className="h-4 w-4" />
-                </Link>
+                    Book Appointment
+                    <ArrowRightIcon className="h-4 w-4" />
+                  </Link>
                 </div>
               </div>
               <div className="bg-background rounded-lg shadow-lg p-6 relative">
@@ -97,15 +99,15 @@ export default function Component() {
                   During your consultation, our doctors will carefully listen to your concerns, review your medical history, and provide personalized advice and treatment options tailored to your health needs.
                 </p>
                 <div className="py-3">
-                <Link
-                  href="/chat"
-                  className="text-primary font-medium mt-4 inline-flex items-center gap-1 absolute bottom-4"
-                  prefetch={false}
+                  <Link
+                    href="/chat"
+                    className="text-primary font-medium mt-4 inline-flex items-center gap-1 absolute bottom-4"
+                    prefetch={false}
                   >
-                  Consult the Doctors
-                  <ArrowRightIcon className="h-4 w-4" />
-                </Link>
-                  </div>
+                    Consult the Doctors
+                    <ArrowRightIcon className="h-4 w-4" />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -114,7 +116,7 @@ export default function Component() {
           <div className="container mx-auto px-4 md:px-6">
             <div className="grid md:grid-cols-2 gap-8 md:gap-12">
               <div className="relative overflow-hidden rounded-lg shadow-lg">
-                <img
+                <Image
                   src="https://media.licdn.com/dms/image/C5612AQHfi6nsfnBalg/article-cover_image-shrink_720_1280/0/1520172399307?e=2147483647&v=beta&t=-SImFWqvA8ZJU7NKxQvKWGKnz9G6GHbC2wbBN8bLroY"
                   width={600}
                   height={400}
@@ -129,7 +131,7 @@ export default function Component() {
                   Your Life is in our hand. Be Safe and celebrate being Healthy.
                 </p>
                 <div className="grid grid-cols-2 gap-4">
-                <Link
+                  <Link
                     href="/alldocs"
                     className="bg-background rounded-lg shadow-lg p-4 flex flex-col items-start gap-2 hover:bg-muted transition-colors"
                     prefetch={false}
@@ -142,7 +144,7 @@ export default function Component() {
                       Experience compassionate care from our experienced physicians.
                     </p>
                   </Link>
-                  
+
                   <Link
                     href="/applyjob"
                     className="bg-background rounded-lg shadow-lg p-4 flex flex-col items-start gap-2 hover:bg-muted transition-colors"
@@ -169,17 +171,17 @@ export default function Component() {
                       Give Your reviews here...
                     </p>
                   </Link>
-                  
+
                   <div
                     className="bg-background rounded-lg shadow-lg p-4 flex flex-col items-start gap-2 hover:bg-muted transition-colors"
-                    
+
                   >
                     <div className="bg-primary rounded-full p-2">
                       <Lock className="h-6 w-6 text-primary-foreground" />
                     </div>
                     <h3 className="text-lg font-semibold">Security & Privacy Features</h3>
                     <p className="text-muted-foreground text-sm">
-                    Ensure patient data is protected through encryption and comply with certain regulations.
+                      Ensure patient data is protected through encryption and comply with certain regulations.
                     </p>
                   </div>
                 </div>
@@ -187,8 +189,8 @@ export default function Component() {
             </div>
           </div>
         </section>
-        <Hospitals/>
-        <Review/>
+        <Hospitals />
+        <Review />
       </main>
       <footer className="bg-muted py-8 mt-12">
         <div className="container mx-auto px-4 md:px-6">

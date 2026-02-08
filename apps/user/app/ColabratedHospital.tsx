@@ -1,45 +1,38 @@
 "use client"
-import axios from "axios";
 import Link from "next/link"
+import Image from "next/image"
 import { useEffect, useState } from "react"
+import { mockHospitals } from "./lib/mockData";
 
-const HosCard = ({info}:any) => {
-    return (
-        <div className="group relative overflow-hidden rounded-lg bg-background shadow-sm transition-all hover:shadow-md">
-            <Link href={info.hospitalUrl} className="absolute inset-0 z-10" prefetch={false}>
-              <span className="sr-only">View Hospital</span>
-            </Link>
-            <img
-              src={info.hospitalImg}
-              width={400}
-              height={300}
-              alt="loading"
-              className="h-48 w-full object-cover transition-all group-hover:scale-105"
-              style={{ aspectRatio: "400/300", objectFit: "cover" }}
-            />
-            <div className="p-4">
-              <h3 className="text-lg font-semibold">Hospital : {info.name}</h3>
-              <p className="text-sm text-muted-foreground">Location : {info.location}</p>
-            </div>
-        </div>  
-    )
+const HosCard = ({ info }: any) => {
+  return (
+    <div className="group relative overflow-hidden rounded-lg bg-background shadow-sm transition-all hover:shadow-md">
+      <Link href={info.hospitalUrl} className="absolute inset-0 z-10" prefetch={false}>
+        <span className="sr-only">View Hospital</span>
+      </Link>
+      <Image
+        src={info.hospitalImg}
+        width={400}
+        height={300}
+        alt="loading"
+        className="h-48 w-full object-cover transition-all group-hover:scale-105"
+        style={{ aspectRatio: "400/300", objectFit: "cover" }}
+      />
+      <div className="p-4">
+        <h3 className="text-lg font-semibold">Hospital : {info.name}</h3>
+        <p className="text-sm text-muted-foreground">Location : {info.location}</p>
+      </div>
+    </div>
+  )
 }
 
 
 export default function Hospitals() {
-    const [hosInfo, sethosInfo] = useState([] as any);
+  const [hosInfo, sethosInfo] = useState([] as any);
 
-    useEffect(() => {
-        (async() => {
-          try{
-            const {data} = await axios.get("/api/hosinfo");
-            sethosInfo(data.info);
-            // console.log(data.info);
-          } catch(e) {
-            //pass
-          }
-        })()
-      }, [])
+  useEffect(() => {
+    sethosInfo(mockHospitals);
+  }, [])
 
   return (
     <section className="w-full py-12 md:py-24 lg:py-32">
@@ -53,7 +46,7 @@ export default function Hospitals() {
           </div>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-           {hosInfo?.map((info:any)=>(<HosCard info = {info}/>))}     
+          {hosInfo?.map((info: any) => (<HosCard info={info} />))}
         </div>
       </div>
     </section>
